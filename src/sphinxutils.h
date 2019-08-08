@@ -146,6 +146,11 @@ namespace sph {
 	/// output fVal with arbitrary 6 or 8 digits
 	/// ensure that sBuffer has enough space to fit fVal!
 	int PrintVarFloat ( char* sBuffer, float fVal );
+
+	// common parser for 'foo=1;bar=2;baz=str, me=here' constructions.
+	SmallStringHash_T <CSphString> ParseKeyValueStrings ( const char* sBuf );
+	SmallStringHash_T<CSphVariant> ParseKeyValueVars ( const char * sBuf );
+	void ParseKeyValues ( const char * sBuf, std::function<void (CSphString&& sKey, CSphString&& sVal)> fnFilter );
 }
 
 /// string splitter, extracts sequences of alphas (as in sphIsAlpha)
